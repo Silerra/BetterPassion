@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework> <!-- .NET Framework 4.7.2 (RimWorld) -->
+    <OutputType>Library</OutputType> <!-- DLL generieren -->
+    <!--Nullable>enable</Nullable-->
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <!-- Referenzen auf RimWorld-Assemblys -->
+  <ItemGroup>
+    <Reference Include="C:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\Assembly-CSharp.dll" />
+    <Reference Include="C:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll" />
+    <!-- Reference Include="C:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\Verse.dll" /-->
+    <PackageReference Include="Lib.Harmony" Version="2.2.2" /> <!-- Harmony über NuGet -->
+  </ItemGroup>
+</Project>

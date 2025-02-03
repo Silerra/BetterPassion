@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <RimWorld.PassionDef>
+    <defName>MinorPassion</defName>
+    <iconPath>UI/Icons/Passion/MinorPassion</iconPath> <!-- Pfad zu deiner PNG-Datei -->
+  </RimWorld.PassionDef>
+  
+  <RimWorld.PassionDef>
+    <defName>MajorPassion</defName>
+    <iconPath>UI/Icons/Passion/MajorPassion</iconPath>
+  </RimWorld.PassionDef>
+</Defs>

@@ -1,0 +1,3 @@
+C:\Silerra\projects\rimworld\BetterPassionIcons\src\obj\Debug\net472\BetterPassionIcons.csproj.AssemblyReference.cache
+C:\Silerra\projects\rimworld\BetterPassionIcons\src\obj\Debug\net472\BetterPassionIcons.GeneratedMSBuildEditorConfig.editorconfig
+C:\Silerra\projects\rimworld\BetterPassionIcons\src\obj\Debug\net472\BetterPassionIcons.csproj.CoreCompileInputs.cache
