@@ -6,3 +6,5 @@ C:\Silerra\projects\rimworld\BetterPassionIcons\src\obj\Debug\net472\BetterPassi
 C:\Silerra\projects\rimworld\BetterPassionIcons\src\obj\Debug\net472\BetterPa.6036C69E.Up2Date
 C:\Silerra\projects\rimworld\BetterPassionIcons\src\obj\Debug\net472\BetterPassionIcons.dll
 C:\Silerra\projects\rimworld\BetterPassionIcons\src\obj\Debug\net472\BetterPassionIcons.pdb
+C:\Silerra\projects\rimworld\BetterPassionIcons\src\obj\Debug\net472\BetterPassionIcons.AssemblyInfoInputs.cache
+C:\Silerra\projects\rimworld\BetterPassionIcons\src\obj\Debug\net472\BetterPassionIcons.AssemblyInfo.cs
