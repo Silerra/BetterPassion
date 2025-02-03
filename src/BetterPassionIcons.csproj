@@ -2,6 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework> <!-- .NET Framework 4.7.2 (RimWorld) -->
     <OutputType>Library</OutputType> <!-- DLL generieren -->
+    <LangVersion>9.0</LangVersion>
     <!--Nullable>enable</Nullable-->
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
