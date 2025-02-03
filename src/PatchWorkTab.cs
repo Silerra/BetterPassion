@@ -1,5 +1,6 @@
 using HarmonyLib;
 using RimWorld;
+using System.Linq;
 using UnityEngine;
 using Verse;
 
@@ -10,29 +11,26 @@ namespace BetterPassionIcons
     {
         static void Postfix(Rect rect, Pawn pawn, PawnColumnWorker_WorkPriority __instance)
         {
-            if (pawn?.skills == null)
+            if (pawn?.skills == null || __instance.def.workType == null)
                 return;
 
-            // Hole die WorkTypeDef aus der PawnColumnDef
-            WorkTypeDef workTypeDef = __instance.def.workType;
-            if (workTypeDef?.relevantSkill == null)
+            // Hole die erste relevante Skill-Def aus der WorkTypeDef
+            SkillDef skillDef = __instance.def.workType.relevantSkills?.FirstOrDefault();
+            if (skillDef == null)
                 return;
 
-            // Hole die Passion für die relevante Skill-Def
-            Passion passion = pawn.skills.GetSkill(workTypeDef.relevantSkill).passion;
+            Passion passion = pawn.skills.GetSkill(skillDef).passion;
             if (passion == Passion.None)
                 return;
 
-            // Lade die benutzerdefinierten Texturen aus den XML-Defs
-            PassionDef passionDef = (passion == Passion.Major) 
-                ? DefDatabase<PassionDef>.GetNamed("MajorPassion") 
+            // Lade die benutzerdefinierte PassionDef
+            PassionDef passionDef = (passion == Passion.Major)
+                ? DefDatabase<PassionDef>.GetNamed("MajorPassion")
                 : DefDatabase<PassionDef>.GetNamed("MinorPassion");
 
-            Texture2D icon = ContentFinder<Texture2D>.Get(passionDef.iconPath);
-
-            // Zeichne das Symbol (20x20 Pixel)
+            // Zeichne das Symbol
             Rect iconRect = new Rect(rect.x + 2f, rect.y + 2f, 20f, 20f);
-            GUI.DrawTexture(iconRect, icon);
+            GUI.DrawTexture(iconRect, passionDef.Icon);
         }
     }
 }
