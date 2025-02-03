@@ -30,7 +30,7 @@ namespace BetterPassionIcons
 
             // Zeichne das Symbol
             Rect iconRect = new Rect(rect.x + 2f, rect.y + 2f, 20f, 20f);
-            GUI.DrawTexture(iconRect, passionDef.Icon);
+            UnityEngine.GUI.DrawTexture(iconRect, passionDef.Icon);
         }
     }
 }
