@@ -15,7 +15,9 @@ namespace BetterPassionIcons
                 return;
 
             // Hole die erste relevante Skill-Def aus der WorkTypeDef
-            SkillDef skillDef = __instance.def.workType.relevantSkills?.FirstOrDefault();
+            if (__instance.def.workType?.relevantSkills == null)
+                return;
+            SkillDef skillDef = __instance.def.workType.relevantSkills.FirstOrDefault();
             if (skillDef == null)
                 return;
 
