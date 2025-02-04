@@ -14,9 +14,16 @@
 
   <!-- Referenzen auf RimWorld-Assemblys -->
   <ItemGroup>
-    <Reference Include="C:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\Assembly-CSharp.dll" />
-    <Reference Include="C:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll" />
-    <Reference Include="C:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.IMGUIModule.dll" />
+    <Reference Include="C:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\Assembly-CSharp.dll">
+      <!-- Verhindert das Kopieren der RimWorld-DLLs -->
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="C:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="C:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.IMGUIModule.dll">
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
@@ -25,6 +32,13 @@
 
   <!-- Korrigierter Post-Build-Step -->
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="del /q &quot;$(OutputPath)*.dll&quot; &amp;&amp; ren &quot;$(OutputPath)BetterPassionIcons.dll&quot; BetterPassionIcons.dll &amp;&amp; ren &quot;$(OutputPath)0Harmony.dll&quot; 0Harmony.dll 2&gt;nul" />
+    <Exec Command="
+      mkdir &quot;$(OutputPath)temp&quot; 2&gt;nul &amp;&amp; 
+      move /y &quot;$(OutputPath)BetterPassionIcons.dll&quot; &quot;$(OutputPath)temp\&quot; 2&gt;nul &amp;&amp; 
+      move /y &quot;$(OutputPath)0Harmony.dll&quot; &quot;$(OutputPath)temp\&quot; 2&gt;nul &amp;&amp; 
+      del /q &quot;$(OutputPath)*.dll&quot; 2&gt;nul &amp;&amp; 
+      move /y &quot;$(OutputPath)temp\*&quot; &quot;$(OutputPath)\&quot; 2&gt;nul &amp;&amp; 
+      rmdir &quot;$(OutputPath)temp&quot; 2&gt;nul
+    " />
   </Target>
 </Project>
