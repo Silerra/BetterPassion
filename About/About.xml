@@ -23,7 +23,4 @@
           <downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>  <!-- Fallback-URL -->
       </li>
   </modDependencies>
-
-  <!-- Empfohlen: Versionsnummer hinzufügen -->
-  <version>0.1.0</version>
 </ModMetaData>
