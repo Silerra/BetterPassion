@@ -9,35 +9,37 @@ namespace BetterPassionIcons
     [HarmonyPatch(typeof(PawnColumnWorker_WorkPriority), nameof(PawnColumnWorker_WorkPriority.DoCell))]
     public static class Patch_WorkPriorityIconSize
     {
-        // Ändere von Postfix zu Prefix und unterdrücke die Originalmethode
-        static bool Prefix(Rect rect, Pawn pawn, PawnColumnWorker_WorkPriority __instance)
+        // Nutze einen Postfix-Patch, um das Vanilla-Icon zu überschreiben
+        static void Postfix(Rect rect, Pawn pawn, PawnColumnWorker_WorkPriority __instance)
         {
-            bool result = true; // Standardwert
             if (pawn?.skills == null || __instance.def.workType == null)
-                return result;
+                return;
 
             SkillDef skillDef = __instance.def.workType.relevantSkills?.FirstOrDefault();
             if (skillDef == null)
-                return result;
+                return;
 
             Passion passion = pawn.skills.GetSkill(skillDef).passion;
             if (passion == Passion.None)
-                return result;
+                return;
 
+            // Lade das benutzerdefinierte Icon
             string defName = (passion == Passion.Major) ? "PassionMajor" : "PassionMinor";
             CustomPassionDef passionDef = DefDatabase<CustomPassionDef>.GetNamed(defName);
 
-            if (passionDef?.Icon != null)
-            {
-                Rect iconRect = new Rect(rect.x + 2f, rect.y + 2f, 24f, 24f);
-                GUI.DrawTexture(iconRect, passionDef.Icon);
-                result = false; // Unterdrücke Vanilla-Code
-            }
+            if (passionDef?.Icon == null)
+                return;
 
-            return result; // Garantiert Rückgabe in allen Pfaden
+            // 1. Überschreibe das Vanilla-Icon mit einem transparenten Bereich
+            Rect vanillaIconRect = new Rect(rect.x + 2f, rect.y + 2f, 20f, 20f); // Vanilla-Icon-Größe
+            GUI.DrawTexture(vanillaIconRect, BaseContent.ClearTex); // Lösche das Vanilla-Icon
+
+            // 2. Zeichne das benutzerdefinierte Icon
+            Rect customIconRect = new Rect(rect.x + 2f, rect.y + 2f, 24f, 24f); // Deine größere Version
+            GUI.DrawTexture(customIconRect, passionDef.Icon);
         }
     }
-    
+
     [StaticConstructorOnStartup]
     public static class ModInit
     {
