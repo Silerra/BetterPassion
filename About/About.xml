@@ -3,14 +3,22 @@
   <name>Better Passion Icons</name>
   <author>Silerra</author>
   <packageId>de.Silerra.BetterPassionIcons</packageId>
-  <description>Macht die Leidenschafts-Symbole (Passions) im Work-Tab besser sichtbar durch größere Icons/hellere Farben.</description>
+  <description>Macht die Leidenschafts-Symbole (Passions) im Work-Tab besser sichtbar durch größere Icons und hellere Farben.</description>
+  
+  <!-- Unterstützte RimWorld-Versionen -->
   <supportedVersions>
-    <li>1.5</li> <!-- Nur Versionen auflisten, keine Kommentare im <li>-Tag! -->
+    <li>1.5</li>
+    <!-- Füge hier weitere Versionen hinzu, falls zutreffend (z. B. <li>1.4</li>) -->
   </supportedVersions>
   
   <!-- Optionale Felder -->
   <url>https://github.com/Silerra/BetterPassionIcons</url>
+  
+  <!-- Abhängigkeiten -->
   <loadAfter>
-    <li>brrainz.harmony</li> <!-- Korrekter Harmony-PackageID! -->
+    <li>brrainz.harmony</li> <!-- Korrekte Harmony-PackageID -->
   </loadAfter>
+  
+  <!-- Empfohlen: Versionsnummer hinzufügen -->
+  <version>0.1.0</version>
 </ModMetaData>
