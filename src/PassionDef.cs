@@ -1,10 +1,11 @@
+// PassionDef.cs
 using RimWorld;
 using UnityEngine;
 using Verse;
 
 namespace BetterPassionIcons
 {
-    public class PassionDef : Def
+    public class CustomPassionDef : Def // ← Geänderter Klassenname
     {
         public Color color = Color.white;
         public string? iconPath;
@@ -16,7 +17,7 @@ namespace BetterPassionIcons
         {
             get
             {
-                if (icon == null && iconPath != null)
+                if (icon == null && !iconPath.NullOrEmpty())
                     icon = ContentFinder<Texture2D>.Get(iconPath);
                 return icon!;
             }
