@@ -9,7 +9,6 @@ namespace BetterPassionIcons
     [HarmonyPatch(typeof(PawnColumnWorker_WorkPriority), nameof(PawnColumnWorker_WorkPriority.DoCell))]
     public static class Patch_WorkPriorityIconSize
     {
-        // Nutze einen Postfix-Patch, um das Vanilla-Icon zu überschreiben
         static void Postfix(Rect rect, Pawn pawn, PawnColumnWorker_WorkPriority __instance)
         {
             if (pawn?.skills == null || __instance.def.workType == null)
@@ -23,19 +22,18 @@ namespace BetterPassionIcons
             if (passion == Passion.None)
                 return;
 
-            // Lade das benutzerdefinierte Icon
             string defName = (passion == Passion.Major) ? "PassionMajor" : "PassionMinor";
             CustomPassionDef passionDef = DefDatabase<CustomPassionDef>.GetNamed(defName);
 
             if (passionDef?.Icon == null)
                 return;
 
-            // 1. Überschreibe das Vanilla-Icon mit einem transparenten Bereich
-            Rect vanillaIconRect = new Rect(rect.x + 2f, rect.y + 2f, 20f, 20f); // Vanilla-Icon-Größe
-            GUI.DrawTexture(vanillaIconRect, BaseContent.ClearTex); // Lösche das Vanilla-Icon
+            // A) Lösche Vanilla-Icon
+            Rect vanillaIconRect = new Rect(rect.x + 2f, rect.y + 2f, 20f, 20f);
+            GUI.DrawTexture(vanillaIconRect, BaseContent.ClearTex);
 
-            // 2. Zeichne das benutzerdefinierte Icon
-            Rect customIconRect = new Rect(rect.x + 2f, rect.y + 2f, 24f, 24f); // Deine größere Version
+            // B) Zeichne Custom-Icon unter dem Häkchen
+            Rect customIconRect = new Rect(rect.x + 5f, rect.y + 6f, 18f, 18f);
             GUI.DrawTexture(customIconRect, passionDef.Icon);
         }
     }
