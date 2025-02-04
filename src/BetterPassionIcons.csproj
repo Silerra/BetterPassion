@@ -31,7 +31,7 @@
   </ItemGroup>
 
   <!-- Korrigierter Post-Build-Step -->
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+<!--   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="
       mkdir &quot;$(OutputPath)temp&quot; 2&gt;nul &amp;&amp; 
       move /y &quot;$(OutputPath)BetterPassionIcons.dll&quot; &quot;$(OutputPath)temp\&quot; 2&gt;nul &amp;&amp; 
@@ -40,5 +40,5 @@
       move /y &quot;$(OutputPath)temp\*&quot; &quot;$(OutputPath)\&quot; 2&gt;nul &amp;&amp; 
       rmdir &quot;$(OutputPath)temp&quot; 2&gt;nul
     " />
-  </Target>
+  </Target> -->
 </Project>
