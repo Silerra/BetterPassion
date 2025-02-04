@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  <RimWorld.PassionDef>
-    <defName>MinorPassion</defName>
-    <iconPath>UI/Icons/Passion/MinorPassion</iconPath> <!-- Pfad zu deiner PNG-Datei -->
-  </RimWorld.PassionDef>
-  
-  <RimWorld.PassionDef>
-    <defName>MajorPassion</defName>
+  <!-- Def für kleine Leidenschaft (Minor Passion) -->
+  <PassionDef>
+    <defName>PassionMinor</defName> <!-- Muss exakt mit dem Vanilla-DefName übereinstimmen! -->
+    <iconPath>UI/Icons/Passion/MinorPassion</iconPath> <!-- Pfad ohne Dateiendung -->
+  </PassionDef>
+
+  <!-- Def für große Leidenschaft (Major Passion) -->
+  <PassionDef>
+    <defName>PassionMajor</defName> <!-- Vanilla-DefName für Major Passion -->
     <iconPath>UI/Icons/Passion/MajorPassion</iconPath>
-  </RimWorld.PassionDef>
+  </PassionDef>
 </Defs>
