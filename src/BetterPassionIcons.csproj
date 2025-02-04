@@ -1,8 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net472</TargetFramework> <!-- .NET Framework 4.7.2 (RimWorld) -->
-    <OutputType>Library</OutputType> <!-- DLL generieren -->
+    <TargetFramework>net472</TargetFramework>
+    <OutputType>Library</OutputType>
     <OutputPath>..\Assemblies</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <LangVersion>9.0</LangVersion>
     <Nullable>enable</Nullable>
   </PropertyGroup>
@@ -14,6 +16,6 @@
     <Reference Include="C:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.IMGUIModule.dll" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Lib.Harmony" Version="2.2.2" />
+    <PackageReference Include="Lib.Harmony" Version="2.2.2" PrivateAssets="all" />
   </ItemGroup>
 </Project>
