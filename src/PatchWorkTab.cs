@@ -9,31 +9,32 @@ namespace BetterPassionIcons
     [HarmonyPatch(typeof(PawnColumnWorker_WorkPriority), nameof(PawnColumnWorker_WorkPriority.DoCell))]
     public static class Patch_WorkPriorityIconSize
     {
-        static void Postfix(Rect rect, Pawn pawn, PawnColumnWorker_WorkPriority __instance)
+        // Ändere von Postfix zu Prefix und unterdrücke die Originalmethode
+        static bool Prefix(Rect rect, Pawn pawn, PawnColumnWorker_WorkPriority __instance)
         {
+            bool result = true; // Standardwert
             if (pawn?.skills == null || __instance.def.workType == null)
-                return;
+                return result;
 
             SkillDef skillDef = __instance.def.workType.relevantSkills?.FirstOrDefault();
             if (skillDef == null)
-                return;
+                return result;
 
             Passion passion = pawn.skills.GetSkill(skillDef).passion;
             if (passion == Passion.None)
-                return;
+                return result;
 
-            // Verwende die VANILLA DefNames "PassionMajor" und "PassionMinor"
             string defName = (passion == Passion.Major) ? "PassionMajor" : "PassionMinor";
-            
-            // Lade die CUSTOM PassionDef (jetzt CustomPassionDef)
             CustomPassionDef passionDef = DefDatabase<CustomPassionDef>.GetNamed(defName);
 
-            if (passionDef?.Icon == null)
-                return;
+            if (passionDef?.Icon != null)
+            {
+                Rect iconRect = new Rect(rect.x + 2f, rect.y + 2f, 24f, 24f);
+                GUI.DrawTexture(iconRect, passionDef.Icon);
+                result = false; // Unterdrücke Vanilla-Code
+            }
 
-            // Zeichne das Icon mit angepasster Größe
-            Rect iconRect = new Rect(rect.x + 2f, rect.y + 2f, 24f, 24f); // Größeres Icon (24x24)
-            GUI.DrawTexture(iconRect, passionDef.Icon);
+            return result; // Garantiert Rückgabe in allen Pfaden
         }
     }
     
