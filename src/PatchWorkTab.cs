@@ -14,10 +14,7 @@ namespace BetterPassionIcons
             if (pawn?.skills == null || __instance.def.workType == null)
                 return;
 
-            // Hole die erste relevante Skill-Def aus der WorkTypeDef
-            if (__instance.def.workType?.relevantSkills == null)
-                return;
-            SkillDef skillDef = __instance.def.workType.relevantSkills.FirstOrDefault();
+            SkillDef skillDef = __instance.def.workType.relevantSkills?.FirstOrDefault();
             if (skillDef == null)
                 return;
 
@@ -25,14 +22,28 @@ namespace BetterPassionIcons
             if (passion == Passion.None)
                 return;
 
-            // Lade die benutzerdefinierte PassionDef
-            PassionDef passionDef = (passion == Passion.Major)
-                ? DefDatabase<PassionDef>.GetNamed("MajorPassion")
-                : DefDatabase<PassionDef>.GetNamed("MinorPassion");
+            // Verwende die VANILLA DefNames "PassionMajor" und "PassionMinor"
+            string defName = (passion == Passion.Major) ? "PassionMajor" : "PassionMinor";
+            
+            // Lade die CUSTOM PassionDef (jetzt CustomPassionDef)
+            CustomPassionDef passionDef = DefDatabase<CustomPassionDef>.GetNamed(defName);
 
-            // Zeichne das Symbol
-            Rect iconRect = new Rect(rect.x + 2f, rect.y + 2f, 20f, 20f);
-            UnityEngine.GUI.DrawTexture(iconRect, passionDef.Icon);
+            if (passionDef?.Icon == null)
+                return;
+
+            // Zeichne das Icon mit angepasster Größe
+            Rect iconRect = new Rect(rect.x + 2f, rect.y + 2f, 24f, 24f); // Größeres Icon (24x24)
+            GUI.DrawTexture(iconRect, passionDef.Icon);
+        }
+    }
+    
+    [StaticConstructorOnStartup]
+    public static class ModInit
+    {
+        static ModInit()
+        {
+            var harmony = new Harmony("de.Silerra.BetterPassionIcons");
+            harmony.PatchAll();
         }
     }
 }

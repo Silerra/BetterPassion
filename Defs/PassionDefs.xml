@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  <!-- Def für kleine Leidenschaft (Minor Passion) -->
-  <PassionDef>
-    <defName>PassionMinor</defName> <!-- Muss exakt mit dem Vanilla-DefName übereinstimmen! -->
-    <iconPath>UI/Icons/Passion/MinorPassion</iconPath> <!-- Pfad ohne Dateiendung -->
-  </PassionDef>
-
-  <!-- Def für große Leidenschaft (Major Passion) -->
-  <PassionDef>
-    <defName>PassionMajor</defName> <!-- Vanilla-DefName für Major Passion -->
+  <!-- Verwende den vollen Namespace für CustomPassionDef -->
+  <BetterPassionIcons.CustomPassionDef>
+    <defName>PassionMajor</defName> <!-- Muss mit Vanilla-DefName übereinstimmen! -->
     <iconPath>UI/Icons/Passion/MajorPassion</iconPath>
-  </PassionDef>
+  </BetterPassionIcons.CustomPassionDef>
+
+  <BetterPassionIcons.CustomPassionDef>
+    <defName>PassionMinor</defName>
+    <iconPath>UI/Icons/Passion/MinorPassion</iconPath>
+  </BetterPassionIcons.CustomPassionDef>
 </Defs>
