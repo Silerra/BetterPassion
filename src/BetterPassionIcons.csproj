@@ -7,6 +7,8 @@
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <LangVersion>9.0</LangVersion>
     <Nullable>enable</Nullable>
+    <!-- Verhindert das Kopieren aller NuGet-Abhängigkeiten -->
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 
   <!-- Referenzen auf RimWorld-Assemblys -->
@@ -15,7 +17,9 @@
     <Reference Include="C:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll" />
     <Reference Include="C:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.IMGUIModule.dll" />
   </ItemGroup>
+
   <ItemGroup>
-    <PackageReference Include="Lib.Harmony" Version="2.2.2" PrivateAssets="all" />
+    <!-- Unterdrückt das Kopieren von Harmony und seiner Abhängigkeiten -->
+    <PackageReference Include="Lib.Harmony" Version="2.2.2" PrivateAssets="all" ExcludeAssets="runtime" />
   </ItemGroup>
 </Project>
