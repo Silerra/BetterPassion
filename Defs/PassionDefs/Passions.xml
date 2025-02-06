@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- Überschreibe VANILLA Major Passion -->
+  <PassionDef>
+    <defName>PassionMajor</defName> <!-- Muss exakt mit Vanilla-DefName übereinstimmen -->
+    <iconPath>UI/Icons/Passion/MajorPassion</iconPath> <!-- Dein benutzerdefinierter Pfad -->
+  </PassionDef>
+
+  <!-- Überschreibe VANILLA Minor Passion -->
+  <PassionDef>
+    <defName>PassionMinor</defName>
+    <iconPath>UI/Icons/Passion/MinorPassion</iconPath>
+  </PassionDef>
+</Defs>
