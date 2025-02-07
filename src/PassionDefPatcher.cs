@@ -1,25 +1,30 @@
-// PassionDefPatcher.cs
 using HarmonyLib;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace BetterPassionIcons
 {
-    [HarmonyPatch(typeof(PassionDef), nameof(PassionDef.IconPath), MethodType.Getter)]
-    public static class PassionDefIconPatch
+    [HarmonyPatch]
+    public static class SkillUIPatch
     {
-        static void Postfix(PassionDef __instance, ref string __result)
+        // 1. Patch den Klassenkonstruktor von SkillUI
+        [HarmonyPatch(typeof(SkillUI), nameof(SkillUI.Reset))]
+        [HarmonyPostfix]
+        public static void Postfix()
         {
-            // Überschreibe IconPath basierend auf defName
-            switch (__instance.defName)
-            {
-                case "PassionMajor":
-                    __result = "UI/Icons/Passion/MajorPassion";
-                    break;
-                case "PassionMinor":
-                    __result = "UI/Icons/Passion/MinorPassion";
-                    break;
-            }
+            // 2. Ersetze die Vanilla-Texturen mit deinen eigenen
+            SkillUI.PassionMinorIcon = ContentFinder<Texture2D>.Get("UI/Icons/Passion/MinorPassion");
+            SkillUI.PassionMajorIcon = ContentFinder<Texture2D>.Get("UI/Icons/Passion/MajorPassion");
         }
     }
+
+/*     [StaticConstructorOnStartup]
+    public static class ModInit
+    {
+        static ModInit()
+        {
+            new Harmony("de.Silerra.BetterPassionIcons").PatchAll();
+        }
+    } */
 }
