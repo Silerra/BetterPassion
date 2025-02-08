@@ -43,7 +43,7 @@ namespace BetterPassionIcons
     {
         static ModInit()
         {
-            Harmony harmony = new Harmony("de.Silerra.BetterPassionIcons");
+            var harmony = new Harmony("de.Silerra.BetterPassionIcons");
             harmony.PatchAll();
         }
     }
