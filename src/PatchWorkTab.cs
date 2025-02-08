@@ -37,14 +37,4 @@ namespace BetterPassionIcons
             GUI.DrawTexture(customIconRect, passionDef.Icon);
         }
     }
-
-    [StaticConstructorOnStartup]
-    public static class ModInit
-    {
-        static ModInit()
-        {
-            var harmony = new Harmony("de.Silerra.BetterPassionIcons");
-            harmony.PatchAll();
-        }
-    }
 }

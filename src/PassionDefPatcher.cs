@@ -7,17 +7,6 @@ using Verse;
 
 namespace BetterPassionIcons
 {
-    [StaticConstructorOnStartup]
-    public static class HarmonyPatches
-    {
-        static HarmonyPatches()
-        {
-            var harmony = new Harmony("de.Silerra.BetterPassionIcons");
-            harmony.PatchAll(Assembly.GetExecutingAssembly());
-            Log.Message("Harmony patches applied");
-        }
-    }
-
     [HarmonyPatch(typeof(WidgetsWork))]
     public static class WidgetsWorkPatch
     {
@@ -31,8 +20,8 @@ namespace BetterPassionIcons
                 Log.Message("WidgetsWork DrawWorkBoxFor patched");
 
                 // Ersetze die Vanilla-Texturen mit deinen eigenen
-                ReplaceField(typeof(WidgetsWork), "PassionWorkboxMinorIcon", ContentFinder<Texture2D>.Get("UI/Icons/Passion/MinorPassion"));
-                ReplaceField(typeof(WidgetsWork), "PassionWorkboxMajorIcon", ContentFinder<Texture2D>.Get("UI/Icons/Passion/MajorPassion"));
+                ReplaceField(typeof(WidgetsWork), "PassionWorkboxMinorIcon", ContentFinder<Texture2D>.Get("UI/Icons/PassionMinorCustom"));
+                ReplaceField(typeof(WidgetsWork), "PassionWorkboxMajorIcon", ContentFinder<Texture2D>.Get("UI/Icons/PassionMajorCustom"));
 
                 fieldsReplaced = true;
             }
