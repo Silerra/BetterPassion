@@ -5,6 +5,7 @@ using Verse;
 
 namespace BetterPassionIcons
 {
+    [StaticConstructorOnStartup]
     public class LoadPatchClasses
     {
         public static void Load()
