@@ -8,7 +8,7 @@ namespace BetterPassionIcons
     [StaticConstructorOnStartup]
     public class LoadPatchClasses
     {
-        public static void Load()
+        static LoadPatchClasses()
         {
             // Load all patch classes
             var patchClasses = new List<Type>
@@ -17,6 +17,7 @@ namespace BetterPassionIcons
                 typeof(Patch_WorkPriorityIconSize),
                 typeof(CustomPassionDef)
             };
+            Log.Message($"Loading {patchClasses.Count} patch classes");
 
             foreach (var patchClass in patchClasses)
             {
