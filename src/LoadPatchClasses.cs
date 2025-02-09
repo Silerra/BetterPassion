@@ -21,13 +21,13 @@ namespace BetterPassionIcons
                 // typeof(Patch_WorkPriorityIconSize),
                 typeof(WidgetsWorkPatch)
             };
+            var harmony = new Harmony("de.silerra.betterpassionicons");
             Log.Message($"Loading {patchClasses.Count} patch classes");
 
             foreach (var patchClass in patchClasses)
             {
                 Log.Message($"Loading patch class {patchClass.FullName}");
-                var harmony = new Harmony("de.silerra.betterpassionicons");
-                harmony.PatchAll(patchClass.Assembly);
+                harmony.CreateClassProcessor(patchClass).Patch();
             }
         }
     }
