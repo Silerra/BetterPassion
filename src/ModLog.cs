@@ -1,10 +1,11 @@
 using Verse;
 using UnityEngine;
 
+namespace BetterPassionIcons{
 public class ModLog
 {
     // Präfix wird pro Instanz gespeichert
-    public string LogPrefix { get; set; }
+    public string LogPrefix { get; private set; }
 
     // Konstruktor zum Setzen eines individuellen Präfixes
     public ModLog(string prefix)
@@ -43,4 +44,5 @@ public class ModLog
         string hexColor = ColorUtility.ToHtmlStringRGB(color);
         Debug.Log($"<color=#{hexColor}>{LogPrefix} {text}</color>");
     }
+}
 }

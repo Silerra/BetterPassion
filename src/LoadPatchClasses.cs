@@ -6,9 +6,15 @@ using Verse;
 namespace BetterPassionIcons
 {
     [StaticConstructorOnStartup]
-    public class LoadPatchClasses
+    public class LoadPatchClasses : Mod
     {
         static LoadPatchClasses()
+        {
+            // ModLog log = new ModLog("BetterPassionIcons");
+            Load();
+        }
+
+        public static void Load()
         {
             // Load all patch classes
             var patchClasses = new List<Type>
