@@ -10,7 +10,6 @@ namespace BetterPassionIcons
     {
         static LoadPatchClasses()
         {
-            // ModLog log = new ModLog("BetterPassionIcons");
             Load();
         }
 
@@ -19,9 +18,8 @@ namespace BetterPassionIcons
             // Load all patch classes
             var patchClasses = new List<Type>
             {
-                typeof(WidgetsWorkPatch),
-                typeof(Patch_WorkPriorityIconSize),
-                typeof(CustomPassionDef)
+                // typeof(Patch_WorkPriorityIconSize),
+                typeof(WidgetsWorkPatch)
             };
             Log.Message($"Loading {patchClasses.Count} patch classes");
 
