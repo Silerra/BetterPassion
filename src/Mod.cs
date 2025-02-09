@@ -10,7 +10,11 @@ namespace BetterPassionIcons
         public const string PackageName = "Better Passion Icons";
         public const string PackageDescription = "Customize the passion icons in the work tab";
         public const string PackageUrl = "https://github.com/Silerra/RimWorld-BetterPassionIcons";
-        public const string PackageTags = "passion, icons, work tab";
-        public static readonly ModLog Log = new ModLog("[BetterPassionIcons]");
+        public const string PackageTags = "passion icons, worktab";
+        public static ModLog Log { get; private set; }
+        static Mod()
+        {
+            Log = new ModLog("["+PackageId+"]");
+        }
    }
 }
