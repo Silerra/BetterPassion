@@ -27,18 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.5.4297" />
     <PackageReference Include="Lib.Harmony" Version="2.3.5" PrivateAssets="all" ExcludeAssets="runtime" />
   </ItemGroup>
-
-  <!-- Korrigierter Post-Build-Step -->
-<!--   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="
-      mkdir &quot;$(OutputPath)temp&quot; 2&gt;nul &amp;&amp; 
-      move /y &quot;$(OutputPath)BetterPassionIcons.dll&quot; &quot;$(OutputPath)temp\&quot; 2&gt;nul &amp;&amp; 
-      move /y &quot;$(OutputPath)0Harmony.dll&quot; &quot;$(OutputPath)temp\&quot; 2&gt;nul &amp;&amp; 
-      del /q &quot;$(OutputPath)*.dll&quot; 2&gt;nul &amp;&amp; 
-      move /y &quot;$(OutputPath)temp\*&quot; &quot;$(OutputPath)\&quot; 2&gt;nul &amp;&amp; 
-      rmdir &quot;$(OutputPath)temp&quot; 2&gt;nul
-    " />
-  </Target> -->
 </Project>
