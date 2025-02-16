@@ -234,21 +234,24 @@ namespace HighQualityTextures
     [HarmonyPatch(typeof(ModContentLoader<Texture2D>))]
     public static class PatchModContentLoaderTexture2D
     {
-        private static bool fieldsreplaced = false;
+        private static bool fieldsReplaced = false;
         private static readonly ModLog Log = Mod.Log;
+
         [HarmonyPatch("LoadTexture", new Type[] { typeof(VirtualFile) })]
         [HarmonyPrefix]
         public static bool Prefix(VirtualFile file, ref Texture2D __result)
         {
-            if (!fieldsreplaced)
+            if (!fieldsReplaced)
             {
-                Log.Message($"[PatchModContentLoaderTexture2D] Loading texture {file.FullPath}");
+                Log.Message($"[PatchModContentLoaderTexture2D] Replacing acceptable extensions for textures.");
                 
                 // Add more acceptable extensions
                 ReplaceField(typeof(ModContentLoader<Texture2D>), "AcceptableExtensionsTexture", new string[5] { ".png", ".jpg", ".jpeg", ".psd", ".dds" });
 
-                fieldsreplaced = true;
+                fieldsReplaced = true;
             }
+
+            Log.Message($"[PatchModContentLoaderTexture2D] Loading texture {file.FullPath}");
             Texture2D texture2D = null;
 
             string filePath = file.FullPath;
@@ -289,6 +292,7 @@ namespace HighQualityTextures
             Log.Warning($"[PatchModContentLoaderTexture2D] Texture not found: {file.FullPath}");
             return true;
         }
+
         private static void ReplaceField(Type type, string fieldName, object value)
         {
             Log.Message($"[PatchModContentLoaderTexture2D] Attempting to replace field {fieldName} in type {type.FullName}");
@@ -305,8 +309,9 @@ namespace HighQualityTextures
 
             // Set the new value
             field.SetValue(null, value);
-            Log.Message("[PatchModContentLoaderTexture2D] Replaced " + fieldName);
+            Log.Message($"[PatchModContentLoaderTexture2D] Replaced {fieldName}");
         }
+
         private static void LogAllFields(Type type)
         {
             Log.Message($"[PatchModContentLoaderTexture2D] Listing all fields in type {type.FullName}:");
