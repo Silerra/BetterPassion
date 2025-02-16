@@ -228,7 +228,7 @@ namespace HighQualityTextures
         }
     }
 
-    [HarmonyPatch(typeof(ModContentLoader<Texture2D>), "LoadTexture", new Type[] { typeof(VirtualFile) })/* , StaticConstructorOnStartup */]
+    [HarmonyPatch(typeof(ModContentLoader<Texture2D>), "LoadTexture", new Type[] { typeof(VirtualFile) })]
     class PatchModContentLoaderTexture2D
     {
         static bool Prefix(VirtualFile file, ref Texture2D __result)
