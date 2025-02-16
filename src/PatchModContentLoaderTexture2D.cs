@@ -24,6 +24,11 @@ namespace HighQualityTextures
 
         public static string error;
 
+        private static bool fourCCEquals(IList<byte> bytes, string s)
+        {
+            return bytes[0] == s[0] && bytes[1] == s[1] && bytes[2] == s[2] && bytes[3] == s[3];
+        }
+
         // DDS Texture loader inspired by
         // http://answers.unity3d.com/questions/555984/can-you-load-dds-textures-during-runtime.html#answer-707772
         // http://msdn.microsoft.com/en-us/library/bb943992.aspx
@@ -221,32 +226,36 @@ namespace HighQualityTextures
                 return texture;
             }
         }
-
-        private static bool fourCCEquals(IList<byte> bytes, string s)
-        {
-            return bytes[0] == s[0] && bytes[1] == s[1] && bytes[2] == s[2] && bytes[3] == s[3];
-        }
     }
 
     [HarmonyPatch(typeof(ModContentLoader<Texture2D>), "LoadTexture", new Type[] { typeof(VirtualFile) })]
-    class PatchModContentLoaderTexture2D
+    public static class PatchModContentLoaderTexture2D
     {
         static bool Prefix(VirtualFile file, ref Texture2D __result)
         {
-            Log.Message($"Loading texture {file.FullPath}");
+            Log.Message($"[PatchModContentLoaderTexture2D] Loading texture {file.FullPath}");
             Texture2D texture2D = null;
 
             string filePath = file.FullPath;
             string ddsPath = Path.ChangeExtension(filePath, ".dds");
             if (File.Exists(ddsPath))
             {
+                Log.Message($"[PatchModContentLoaderTexture2D] DDS file found: {ddsPath}");
                 texture2D = DdsLoader.Load(ddsPath);
-                texture2D.name = Path.GetFileNameWithoutExtension(filePath);
-                texture2D.filterMode = FilterMode.Trilinear;
-                texture2D.Apply(true, true);
+                if (texture2D != null)
+                {
+                    texture2D.name = Path.GetFileNameWithoutExtension(filePath);
+                    texture2D.filterMode = FilterMode.Trilinear;
+                    texture2D.Apply(true, true);
+                }
+                else
+                {
+                    Log.Error($"[PatchModContentLoaderTexture2D] Failed to load DDS texture: {DdsLoader.error}");
+                }
             }
             else if (File.Exists(filePath))
             {
+                Log.Message($"[PatchModContentLoaderTexture2D] Original file found: {filePath}");
                 byte[] data = file.ReadAllBytes();
                 texture2D = new Texture2D(2, 2, TextureFormat.Alpha8, true);
                 texture2D.LoadImage(data);
@@ -255,11 +264,14 @@ namespace HighQualityTextures
                 texture2D.Apply(true, true);
             }
 
-            if (texture2D != null) {
+            if (texture2D != null)
+            {
                 __result = texture2D;
+                Log.Message($"[PatchModContentLoaderTexture2D] Texture loaded successfully: {texture2D.name}");
                 return false;
             }
 
+            Log.Warning($"[PatchModContentLoaderTexture2D] Texture not found: {file.FullPath}");
             return true;
         }
     }
