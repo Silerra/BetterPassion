@@ -1,12 +1,15 @@
-﻿using HarmonyLib;
+﻿using BetterPassionIcons;
+using HarmonyLib;
 using RimWorld.IO;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using UnityEngine;
 using Verse;
+using Mod = BetterPassionIcons.Mod;
 
 namespace HighQualityTextures
 {
@@ -231,8 +234,17 @@ namespace HighQualityTextures
     [HarmonyPatch(typeof(ModContentLoader<Texture2D>), "LoadTexture", new Type[] { typeof(VirtualFile) })]
     public static class PatchModContentLoaderTexture2D
     {
+        private static bool fieldsreplaced = false;
+        private static readonly ModLog Log = Mod.Log;
         static bool Prefix(VirtualFile file, ref Texture2D __result)
         {
+            if (!fieldsreplaced)
+            {
+                // Add more acceptable extensions
+                ReplaceField(typeof(ModContentLoader<Texture2D>), "AcceptableExtensionsTexture", new string[5] { ".png", ".jpg", ".jpeg", ".psd", ".dds" });
+
+                fieldsreplaced = true;
+            }
             Log.Message($"[PatchModContentLoaderTexture2D] Loading texture {file.FullPath}");
             Texture2D texture2D = null;
 
@@ -273,6 +285,33 @@ namespace HighQualityTextures
 
             Log.Warning($"[PatchModContentLoaderTexture2D] Texture not found: {file.FullPath}");
             return true;
+        }
+        private static void ReplaceField(Type type, string fieldName, object value)
+        {
+            Log.Message($"[PatchModContentLoaderTexture2D] Attempting to replace field {fieldName} in type {type.FullName}");
+            FieldInfo field = type.GetField(fieldName, BindingFlags.Static | BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+            if (field == null)
+            {
+                Log.Error($"[PatchModContentLoaderTexture2D] Field {fieldName} not found in type {type.FullName}");
+                LogAllFields(type);
+                return;
+            }
+
+            // Remove the readonly restriction
+            typeof(FieldInfo).GetField("m_isReadOnly", BindingFlags.Instance | BindingFlags.NonPublic)?.SetValue(field, false);
+
+            // Set the new value
+            field.SetValue(null, value);
+            Log.Message("[PatchModContentLoaderTexture2D] Replaced " + fieldName);
+        }
+        private static void LogAllFields(Type type)
+        {
+            Log.Message($"[PatchModContentLoaderTexture2D] Listing all fields in type {type.FullName}:");
+            FieldInfo[] fields = type.GetFields(BindingFlags.Static | BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+            foreach (var field in fields)
+            {
+                Log.Message($"[PatchModContentLoaderTexture2D] Field: {field.Name}, Type: {field.FieldType}");
+            }
         }
     }
 }
