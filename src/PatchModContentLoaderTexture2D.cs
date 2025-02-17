@@ -231,16 +231,25 @@ namespace HighQualityTextures
         }
     }
 
-    [HarmonyPatch(typeof(ModContentLoader<Texture2D>))]
+
+    [HarmonyPatch]
     public static class PatchModContentLoaderTexture2D
     {
         private static bool fieldsReplaced = false;
         private static readonly ModLog Log = Mod.Log;
 
-        [HarmonyPatch("LoadTexture", new Type[] { typeof(VirtualFile) })]
+        [HarmonyTargetMethod]
+        public static MethodBase TargetMethod()
+        {
+            // Referenziere die generische Methode
+            return AccessTools.Method(typeof(ModContentLoader<Texture2D>), "LoadTexture", new Type[] { typeof(VirtualFile) });
+        }
+
         [HarmonyPrefix]
         public static bool Prefix(VirtualFile file, ref Texture2D __result)
         {
+            Log.Message($"[PatchModContentLoaderTexture2D] Prefix called for {file.FullPath}");
+
             if (!fieldsReplaced)
             {
                 Log.Message($"[PatchModContentLoaderTexture2D] Replacing acceptable extensions for textures.");
