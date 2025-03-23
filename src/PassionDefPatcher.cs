@@ -11,7 +11,6 @@ namespace BetterPassionIcons
     public static class WidgetsWorkPatch
     {
         private static bool fieldsReplaced = false;
-        private static ModLog Log = Mod.Log;
 
         [HarmonyPatch("DrawWorkBoxFor")]
         public static void Prefix()
