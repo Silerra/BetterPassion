@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-  <name>Better Passion Icons</name>
+  <name>Better Passion</name>
   <author>Silerra</author>
-  <packageId>de.Silerra.BetterPassionIcons</packageId>
-  <description>Macht die Leidenschafts-Symbole (Passions) im Work-Tab besser sichtbar durch größere Icons und hellere Farben.</description>
+  <packageId>de.Silerra.BetterPassion</packageId>
+  <description>Macht die Leidenschafts-Symbole (Passions) im Work-Tab besser sichtbar durch angepasste Icons und besser unterscheidbare Farben.</description>
   
   <!-- Unterstützte RimWorld-Versionen -->
   <supportedVersions>
@@ -23,4 +23,10 @@
           <downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>  <!-- Fallback-URL -->
       </li>
   </modDependencies>
+  <loadAfter>
+    <li>brrainz.harmony</li> <!-- Sicherstellen, dass Harmony geladen ist, bevor dieses Mod geladen wird -->
+    <li>de.silerra.highqualitytextures</li> <!-- Sicherstellen, dass die High Quality Textures geladen sind, bevor dieses Mod geladen wird -->
+    <li>Telefonmast.GraphicsSettings</li> <!-- Sicherstellen, dass die GraphicsSettings+ geladen sind, bevor dieses Mod geladen wird -->
+    <li>bs.performance</li> <!-- Sicherstellen, dass die Performance Fish geladen ist, bevor dieses Mod geladen wird -->
+  </loadAfter>
 </ModMetaData>
