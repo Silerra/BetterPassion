@@ -33,6 +33,7 @@
         "--exclude", "src/",
         "${workspaceFolder}/About",
         "${workspaceFolder}/1.5",
+        "${workspaceFolder}/1.6",
         "${workspaceFolder}/Assemblies",
         "${workspaceFolder}/Defs",
         "${workspaceFolder}/Textures",
