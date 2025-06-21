@@ -14,20 +14,20 @@
 
   <!-- Referenzen auf RimWorld-Assemblys -->
   <ItemGroup>
-    <Reference Include="$(RimWorldDir)/$(RimWorldDataDir)/Managed/Assembly-CSharp.dll">
+    <Reference Include="$(RimWorldManagedDir)Assembly-CSharp.dll">
       <!-- Verhindert das Kopieren der RimWorld-DLLs -->
       <Private>False</Private>
     </Reference>
-    <Reference Include="$(RimWorldDir)/$(RimWorldDataDir)/Managed/UnityEngine.CoreModule.dll">
+    <Reference Include="$(RimWorldManagedDir)UnityEngine.CoreModule.dll">
       <Private>False</Private>
     </Reference>
-    <Reference Include="$(RimWorldDir)/$(RimWorldDataDir)/Managed/UnityEngine.IMGUIModule.dll">
+    <Reference Include="$(RimWorldManagedDir)UnityEngine.IMGUIModule.dll">
       <Private>False</Private>
     </Reference>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.5.4297" />
-    <PackageReference Include="Lib.Harmony" Version="2.3.5" PrivateAssets="all" ExcludeAssets="runtime" />
+    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.5.4409" />
+    <PackageReference Include="Lib.Harmony" Version="2.3.6" PrivateAssets="all" ExcludeAssets="runtime" />
   </ItemGroup>
 </Project>

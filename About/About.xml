@@ -8,7 +8,7 @@
   <!-- Unterstützte RimWorld-Versionen -->
   <supportedVersions>
     <li>1.5</li>
-    <!-- Füge hier weitere Versionen hinzu, falls zutreffend (z. B. <li>1.4</li>) -->
+    <li>1.6</li>
   </supportedVersions>
   
   <!-- Optionale Felder -->

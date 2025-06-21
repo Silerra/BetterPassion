@@ -1,6 +1,14 @@
 <Project>
-  <PropertyGroup>
-    <RimWorldDir>/home/$(USER)/.steam/debian-installation/steamapps/common/RimWorld</RimWorldDir>
-    <RimWorldDataDir>RimWorldLinux_Data</RimWorldDataDir>
+  <PropertyGroup Condition="'$(OS)' == 'Unix'">
+    <RimWorldDir>/home/$(USER)/.steam/steam/steamapps/common/RimWorld/</RimWorldDir>
+    <RimWorldManagedDir>$(RimWorldDir)RimWorldLinux_Data/Managed/</RimWorldManagedDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
+    <RimWorldDir>C:\Program Files (x86)\Steam\steamapps\common\RimWorld\</RimWorldDir>
+    <RimWorldManagedDir>$(RimWorldDir)RimWorldWin64_Data\Managed\</RimWorldManagedDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(OS)' == 'Darwin'">
+    <RimWorldDir>/Applications/RimWorld.app/Contents/Resources/Data/</RimWorldDir>
+    <RimWorldManagedDir>$(RimWorldDir)RimWorldMac_Data/Managed/</RimWorldManagedDir>
   </PropertyGroup>
 </Project>
