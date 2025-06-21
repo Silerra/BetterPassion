@@ -14,14 +14,14 @@
 
   <!-- Referenzen auf RimWorld-Assemblys -->
   <ItemGroup>
-    <Reference Include="C:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\Assembly-CSharp.dll">
+    <Reference Include="$(RimWorldDir)/$(RimWorldDataDir)/Managed/Assembly-CSharp.dll">
       <!-- Verhindert das Kopieren der RimWorld-DLLs -->
       <Private>False</Private>
     </Reference>
-    <Reference Include="C:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll">
+    <Reference Include="$(RimWorldDir)/$(RimWorldDataDir)/Managed/UnityEngine.CoreModule.dll">
       <Private>False</Private>
     </Reference>
-    <Reference Include="C:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.IMGUIModule.dll">
+    <Reference Include="$(RimWorldDir)/$(RimWorldDataDir)/Managed/UnityEngine.IMGUIModule.dll">
       <Private>False</Private>
     </Reference>
   </ItemGroup>

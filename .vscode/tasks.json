@@ -20,6 +20,28 @@
         "clean",
         "${workspaceFolder}/src/BetterPassionIcons.csproj"
       ]
+    },
+    {
+      "label": "Publish",
+      "type": "shell",
+      "dependsOn": "Build",
+      "command": "rsync",
+      "args": [
+        "-a",
+        "--delete",
+        "--exclude",
+        ".git/",
+        "--exclude",
+        ".vscode/",
+        "--exclude",
+        "src/",
+        "${workspaceFolder}/About",
+        "${workspaceFolder}/Assemblies",
+        "${workspaceFolder}/Defs",
+        "${workspaceFolder}/Textures",
+        "${workspaceFolder}/publish/"
+      ],
+      "problemMatcher": []
     }
   ]
 }

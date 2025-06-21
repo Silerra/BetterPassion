@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <RimWorldDir>/home/silerra/.steam/debian-installation/steamapps/common/RimWorld</RimWorldDir>
+    <RimWorldDataDir>RimWorldLinux_Data</RimWorldDataDir>
+  </PropertyGroup>
+</Project>
